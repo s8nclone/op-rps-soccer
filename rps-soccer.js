@@ -16,27 +16,49 @@ const playerScore = document.getElementById('humanScore');
 const computerScore = document.getElementById('alienScore');
 
 
-button.forEach((button) => {
-    button.addEventListener("click", () => {
-        const img = button.querySelector("img");
-        humanSelection = img.alt.toLowerCase();
+// button.forEach((button) => {
+//     button.addEventListener("click", () => {
+//         const img = button.querySelector("img");
+//         humanSelection = img.alt.toLowerCase();
 
-        playRound (humanSelection, alienSelection);
+//         playRound (humanSelection, alienSelection);
 
-        if (humanScore === 5 || alienScore === 5) {
-            declareWinner();
-        }
-    });
-});
+//         if (humanScore === 5 || alienScore === 5) {
+//             declareWinner();
+//         }
+//     });
+// });
 
-const myArray = ["goal", "crossBar", "gkSave"];
+// const myArray = ["goal", "crossBar", "gkSave"];
+
+// function alienPlay() {
+//   return myArray[~~(Math.random() * myArray.length)];
+}
 
 function alienPlay() {
   return myArray[~~(Math.random() * myArray.length)];
 }
 
+// function playRound(humanSelection, alienSelection) {
+//     humanSelection = humanSelection.toLowerCase();
+//     if (humanSelection == alienSelection) {
+//         displayResults("That's a Draw!");
+//     } else if (
+//         (humanSelection == "rock" && alienSelection == "scissors") ||
+//         (humanSelection == "scissors" && alienSelection == "paper") ||
+//         (humanSelection == "paper" && alienSelection == "rock")
+//     ) {
+//         humanScore = ++humanScore;
+//         keepHumanScore();
+//         displayResults("You Win!");
+//     } else {
+//         alienScore = ++alienScore;
+//         keepAlienScore();
+//         displayResults("Alien Wins!");
+//     }
+// }
+
 function playRound(humanSelection, alienSelection) {
-    alienSelection = alienPlay().toLowerCase();
     humanSelection = humanSelection.toLowerCase();
     if (humanSelection == alienSelection) {
         displayResults("That's a Draw!");
@@ -45,29 +67,29 @@ function playRound(humanSelection, alienSelection) {
         (alienSelection == "gkSave" && humanSelection == "crossBar") ||
         (alienSelection == "crossBar" && humanSelection == "goal")
     ) {
-    alienScore = ++alienScore;
-    keepAlienScore();
-    if (alienScore === 1) {
-        displayResults(
-            'one up! aliens take the lead'
-        );
-    } else if (alienScore === 2) {
-        displayResults(
-            'oh no, the aliens nets again!'
-        );
-    } else if (alienScore === 3) {
-        displayResults (
-            'another one, trouble for the humans? '
-        );
-    } else if (alienScore === 4) {
-        displayResults (
-            'unbelievable, trouble for the humans now'
-        );
-    } else {
-        displayResults (
-            'aliens take the lead and are looking strong'
-        );
-    }
+        alienScore = ++alienScore;
+        keepAlienScore();
+        if (alienScore === 1) {
+            displayResults(
+                'one up! aliens take the lead'
+            );
+        } else if (alienScore === 2) {
+            displayResults(
+                'oh no, the aliens nets again!'
+            );
+        } else if (alienScore === 3) {
+            displayResults (
+                'another one, trouble for the humans? '
+            );
+        } else if (alienScore === 4) {
+            displayResults (
+                'unbelievable, trouble for the humans now'
+            );
+        } else {
+            displayResults (
+                'aliens take the lead and are looking strong'
+            );
+        }
     } else {
         humanScore = ++humanScore;
         keepHumanScore();
@@ -94,6 +116,20 @@ function playRound(humanSelection, alienSelection) {
         }
     }
 }
+
+button.forEach((button) => {
+    button.addEventListener("click", () => {
+        const img = button.querySelector("img");
+        humanSelection = img.alt.toLowerCase();
+        alienSelection = alienPlay().toLowerCase();
+
+        playRound(humanSelection, alienSelection);
+
+        if (humanScore === 5 || alienScore === 5) {
+            declareWinner();
+        }
+    });
+});
 
 function displayResults (str) {
     commentary.textContent = str;

@@ -38,9 +38,9 @@ function playRound(humanSelection, alienSelection) {
     if (humanSelection == alienSelection) {
         displayResults("That's a Draw!");
     } else if (
-        (humanSelection == "rock" && alienSelection == "scissors") ||
-        (humanSelection == "scissors" && alienSelection == "paper") ||
-        (humanSelection == "paper" && alienSelection == "rock")
+        (humanSelection == "goal" && alienSelection == "gkSave") ||
+        (humanSelection == "gkSave" && alienSelection == "crossBar") ||
+        (humanSelection == "crossBar" && alienSelection == "goal")
     ) {
         humanScore = ++humanScore;
         keepHumanScore();

@@ -8,7 +8,7 @@ const commentary = document.getElementById('comments');
 const goal = document.getElementById('goal');
 const crossBar = document.getElementById('cross-bar');
 const gkSave = document.getElementById('gk-save');
-const announce = document.getElementById('announcemnet');
+const announce = document.getElementById('announcement');
 const retry = document.getElementById('retry-btn');
 const playerScore = document.getElementById('humanScore');
 const computerScore = document.getElementById('alienScore');
@@ -29,12 +29,27 @@ const computerScore = document.getElementById('alienScore');
 
 const myArray = ["goal", "crossBar", "gkSave"];
 
-// function alienPlay() {
-//   return myArray[~~(Math.random() * myArray.length)];
-}
-
 function alienPlay() {
   return myArray[~~(Math.random() * myArray.length)];
+}
+
+function playRound(humanSelection, alienSelection) {
+    humanSelection = humanSelection.toLowerCase();
+    if (humanSelection == alienSelection) {
+        displayResults("That's a Draw!");
+    } else if (
+        (humanSelection == "rock" && alienSelection == "scissors") ||
+        (humanSelection == "scissors" && alienSelection == "paper") ||
+        (humanSelection == "paper" && alienSelection == "rock")
+    ) {
+        humanScore = ++humanScore;
+        keepHumanScore();
+        displayResults("You Win!");
+    } else {
+        alienScore = ++alienScore;
+        keepAlienScore();
+        displayResults("Alien Wins!");
+    }
 }
 
 // function playRound(humanSelection, alienSelection) {
@@ -42,78 +57,59 @@ function alienPlay() {
 //     if (humanSelection == alienSelection) {
 //         displayResults("That's a Draw!");
 //     } else if (
-//         (humanSelection == "rock" && alienSelection == "scissors") ||
-//         (humanSelection == "scissors" && alienSelection == "paper") ||
-//         (humanSelection == "paper" && alienSelection == "rock")
+//         (alienSelection == "goal" && humanSelection == "gkSave") ||
+//         (alienSelection == "gkSave" && humanSelection == "crossBar") ||
+//         (alienSelection == "crossBar" && humanSelection == "goal")
 //     ) {
-//         humanScore = ++humanScore;
-//         keepHumanScore();
-//         displayResults("You Win!");
-//     } else {
 //         alienScore = ++alienScore;
 //         keepAlienScore();
-//         displayResults("Alien Wins!");
+//         if (alienScore === 1) {
+//             displayResults(
+//                 'one up! aliens take the lead'
+//             );
+//         } else if (alienScore === 2) {
+//             displayResults(
+//                 'oh no, the aliens nets again!'
+//             );
+//         } else if (alienScore === 3) {
+//             displayResults (
+//                 'another one, trouble for the humans? '
+//             );
+//         } else if (alienScore === 4) {
+//             displayResults (
+//                 'unbelievable, trouble for the humans now'
+//             );
+//         } else {
+//             displayResults (
+//                 'aliens take the lead and are looking strong'
+//             );
+//         }
+//     } else {
+//         humanScore = ++humanScore;
+//         keepHumanScore();
+//         if (humanScore === 1) {
+//             displayResults (
+//                 'goal! nice shot!!'
+//             );
+//         } else if (humanScore === 2) {
+//             displayResults (
+//                 'another one! the alien skipper was sent the wrong way!'
+//             );
+//         } else if (humanScore === 3) {
+//             displayResults (
+//                 'great shot, nicely placed in the top corner. Alien keeper had no chance'
+//             );
+//         } else if (humanScore === 4) {
+//             displayResults (
+//                 'oh beautiful! just wonderful! the team spirit is high!'
+//             );
+//         } else {
+//             displayResults (
+//                 'wonderful! humans put another one past to seal the win!!'
+//             );
+//         }
 //     }
 // }
-
-function playRound(humanSelection, alienSelection) {
-    humanSelection = humanSelection.toLowerCase();
-    if (humanSelection == alienSelection) {
-        displayResults("That's a Draw!");
-    } else if (
-        (alienSelection == "goal" && humanSelection == "gkSave") ||
-        (alienSelection == "gkSave" && humanSelection == "crossBar") ||
-        (alienSelection == "crossBar" && humanSelection == "goal")
-    ) {
-        alienScore = ++alienScore;
-        keepAlienScore();
-        if (alienScore === 1) {
-            displayResults(
-                'one up! aliens take the lead'
-            );
-        } else if (alienScore === 2) {
-            displayResults(
-                'oh no, the aliens nets again!'
-            );
-        } else if (alienScore === 3) {
-            displayResults (
-                'another one, trouble for the humans? '
-            );
-        } else if (alienScore === 4) {
-            displayResults (
-                'unbelievable, trouble for the humans now'
-            );
-        } else {
-            displayResults (
-                'aliens take the lead and are looking strong'
-            );
-        }
-    } else {
-        humanScore = ++humanScore;
-        keepHumanScore();
-        if (humanScore === 1) {
-            displayResults (
-                'goal! nice shot!!'
-            );
-        } else if (humanScore === 2) {
-            displayResults (
-                'another one! the alien skipper was sent the wrong way!'
-            );
-        } else if (humanScore === 3) {
-            displayResults (
-                'great shot, nicely placed in the top corner. Alien keeper had no chance'
-            );
-        } else if (humanScore === 4) {
-            displayResults (
-                'oh beautiful! just wonderful! the team spirit is high!'
-            );
-        } else {
-            displayResults (
-                'wonderful! humans put another one past to seal the win!!'
-            );
-        }
-    }
-}
 
 button.forEach((button) => {
     button.addEventListener("click", () => {

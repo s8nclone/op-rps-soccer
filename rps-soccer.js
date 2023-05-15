@@ -33,9 +33,6 @@ function alienPlay() {
   return myArray[~~(Math.random() * myArray.length)];
 }
 
-let alienScore = 0;
-let humanScore = 0;
-
 // Increase either alienScore or humanScore randomly
 if (Math.random() < 0.5) {
   alienScore++;

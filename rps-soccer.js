@@ -14,18 +14,19 @@ const playerScore = document.getElementById('humanScore');
 const computerScore = document.getElementById('alienScore');
 
 
-// button.forEach((button) => {
-//     button.addEventListener("click", () => {
-//         const img = button.querySelector("img");
-//         humanSelection = img.alt.toLowerCase();
+button.forEach((button) => {
+    button.addEventListener("click", () => {
+        const img = button.querySelector("img");
+        humanSelection = img.alt.toLowerCase();
+        alienSelection = alienPlay().toLowerCase();
 
-//         playRound (humanSelection, alienSelection);
+        playRound(humanSelection, alienSelection);
 
-//         if (humanScore === 5 || alienScore === 5) {
-//             declareWinner();
-//         }
-//     });
-// });
+        if (humanScore === 5 || alienScore === 5) {
+            declareWinner();
+        }
+    });
+});
 
 const myArray = ["goal", "crossBar", "gkSave"];
 
@@ -171,19 +172,6 @@ function playRound(humanSelection, alienSelection) {
 //     }
 // }
 
-button.forEach((button) => {
-    button.addEventListener("click", () => {
-        const img = button.querySelector("img");
-        humanSelection = img.alt.toLowerCase();
-        alienSelection = alienPlay().toLowerCase();
-
-        playRound(humanSelection, alienSelection);
-
-        if (humanScore === 5 || alienScore === 5) {
-            declareWinner();
-        }
-    });
-});
 
 function displayResults (str) {
     commentary.textContent = str;

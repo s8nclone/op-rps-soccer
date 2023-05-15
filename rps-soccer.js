@@ -33,24 +33,76 @@ function alienPlay() {
   return myArray[~~(Math.random() * myArray.length)];
 }
 
+// function playRound(humanSelection, alienSelection) {
+//     humanSelection = humanSelection.toLowerCase();
+//     if (humanSelection == alienSelection) {
+//         displayResults("That's a Draw!");
+//     } else if (
+//         (humanSelection == "goal" && alienSelection == "gkSave") ||
+//         (humanSelection == "gkSave" && alienSelection == "crossBar") ||
+//         (humanSelection == "crossBar" && alienSelection == "goal")
+//     ) {
+//         humanScore = ++humanScore;
+//         keepHumanScore();
+//         displayResults("You Win!");
+//     } else {
+//         alienScore = ++alienScore;
+//         keepAlienScore();
+//         displayResults("Alien Wins!");
+//     }
+// }
+
 function playRound(humanSelection, alienSelection) {
+    if (humanScore === 5 || alienScore === 5) {
+        return;
+    }
+
     humanSelection = humanSelection.toLowerCase();
     if (humanSelection == alienSelection) {
         displayResults("That's a Draw!");
     } else if (
-        (humanSelection == "goal" && alienSelection == "gkSave") ||
-        (humanSelection == "gkSave" && alienSelection == "crossBar") ||
-        (humanSelection == "crossBar" && alienSelection == "goal")
+        (alienSelection == "goal" && humanSelection == "gkSave") ||
+        (alienSelection == "gkSave" && humanSelection == "crossBar") ||
+        (alienSelection == "crossBar" && humanSelection == "goal")
     ) {
-        humanScore = ++humanScore;
-        keepHumanScore();
-        displayResults("You Win!");
-    } else {
         alienScore = ++alienScore;
         keepAlienScore();
-        displayResults("Alien Wins!");
+        if (alienScore === 1) {
+            displayResults(
+                'one up! aliens take the lead'
+            );
+        } else if (alienScore === 2) {
+            displayResults(
+                'oh no, the aliens are running away with it'
+            );
+        } else {
+            displayResults(
+                'alien scores! they are unstoppable'
+            );
+        }
+    } else {
+        humanScore = ++humanScore;
+        keepHumanScore();
+        if (humanScore === 1) {
+            displayResults(
+                'you score! we are in it to win it'
+            );
+        } else if (humanScore === 2) {
+            displayResults(
+                'come on! we can still win this'
+            );
+        } else {
+            displayResults(
+                'you score! what a comeback'
+            );
+        }
+    }
+
+    if (humanScore === 5 || alienScore === 5) {
+        declareWinner();
     }
 }
+
 
 // function playRound(humanSelection, alienSelection) {
 //     humanSelection = humanSelection.toLowerCase();

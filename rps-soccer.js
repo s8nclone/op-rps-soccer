@@ -4,8 +4,6 @@ let humanScore = 0;
 let alienScore = 0;
 
 let button = document.querySelectorAll('.btn');
-const body = document.querySelector('body');
-const main = document.querySelector('main');
 const commentary = document.getElementById('comments');
 const goal = document.getElementById('goal');
 const crossBar = document.getElementById('cross-bar');
@@ -29,7 +27,7 @@ const computerScore = document.getElementById('alienScore');
 //     });
 // });
 
-// const myArray = ["goal", "crossBar", "gkSave"];
+const myArray = ["goal", "crossBar", "gkSave"];
 
 // function alienPlay() {
 //   return myArray[~~(Math.random() * myArray.length)];

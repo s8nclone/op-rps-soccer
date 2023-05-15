@@ -83,6 +83,9 @@ main {
 .commentary {
     text-align: center;
     font-size: 30px;
+}
+
+.announcement {
     padding: 10px;
     margin: 5px;
     color: green;

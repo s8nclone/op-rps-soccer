@@ -119,12 +119,16 @@ function resetGame() {
 
 function keepHumanScore() {
     let humanScoreBox = document.querySelector("#humanScore");
-  
     humanScoreBox.textContent = humanScore;
+    if (humanScore === 5 || alienScore === 5) {
+        declareWinner();
+    }
 }
 
 function keepAlienScore() {
     let alienScoreBox = document.querySelector("#alienScore");
-  
     alienScoreBox.textContent = alienScore;
+    if (humanScore === 5 || alienScore === 5) {
+        declareWinner();
+    }
 }
